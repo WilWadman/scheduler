@@ -17,3 +17,12 @@ for(let appointment of appointmentsFromDays) {
 }
 return filteredAppointments;
 }
+
+export  function getInterview(state, interview) {
+  if(!interview) return null;
+  const filteredInterview = {};
+  filteredInterview.student = interview.student;
+  filteredInterview.interviewer = state.interviewers[interview.interviewer];
+  return filteredInterview;
+
+}
