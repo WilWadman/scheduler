@@ -3,23 +3,26 @@
 import {useState} from "react";
 
 export default function useVisualMode(initial){
-  //I used let instead of const
-  let [mode, setMode] = useState(initial);
-  let [history, setHistory] = useState([initial]); 
+
+  const [mode, setMode] = useState(initial);
+  const  [history, setHistory] = useState([initial]); 
 
 
-  //transition function
-  function transition(nextMode, replace = false) {
+ 
+  function transition(newMode, replace = false) {
     if(replace){
+      //  use setHistory to slice off index 0 and the next index is there is one for a new array
       setHistory(prev => prev.slice(0, -1));
-      setHistory(prev => [...prev, nextMode]);
+      // use state from last set and inject the newMode into a new array without altering the original
+      setHistory(prev => [...prev, newMode]);
       }else{
-        setHistory(prev => [...prev, nextMode]); 
+        // use state from last set and inject the newMode into a new array without altering the original
+        setHistory(prev => [...prev, newMode]); 
       }
-      setMode(nextMode);
+      setMode(newMode);
   }
 
-  //back function
+ 
   function back() {
     if(history.length > 1) {
       setHistory(history.slice(0, -1));

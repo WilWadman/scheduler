@@ -4,7 +4,6 @@ export function getAppointmentsForDay(state, name) {
     return [];
   }
 
-  //get the appointments
   const appointmentsFromDays = filteredDays[0].appointments;
  
   let filteredAppointments = [];
@@ -31,7 +30,7 @@ export function getInterviewersForDay(state, name) {
       return [];
     }
   
-    //get interviwers for the days
+  
     const interviewersFromDays = filteredDays[0].interviewers;
    
     let filteredInterviewers = [];
