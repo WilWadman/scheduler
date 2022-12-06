@@ -38,6 +38,7 @@ export function getInterviewersForDay(state, name) {
     for(let interviewer of interviewersFromDays) {
       filteredInterviewers.push(state.interviewers[interviewer]);
     }
+   
     return filteredInterviewers;
 
 

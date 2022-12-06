@@ -9,7 +9,6 @@ import Status from "components/Appointment/Status.js";
 import Confirm from "components/Appointment/Confirm.js";
 import Error from "components/Appointment/Error.js";
 
-
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -31,9 +30,10 @@ export default function Appointment(props) {
       interviewer,
     };
     transition(SAVING, true);
-    props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(() => transition(ERROR_SAVE, true))
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true));
   }
 
   function remove() {
@@ -42,17 +42,16 @@ export default function Appointment(props) {
     } else {
       transition(DELETING, true);
 
-      props.cancelInterview(props.id)
-      .then(() => transition(EMPTY))
-      .catch(() => transition(ERROR_DELETE, true))
+      props
+        .cancelInterview(props.id)
+        .then(() => transition(EMPTY))
+        .catch(() => transition(ERROR_DELETE, true));
     }
   }
-
 
   const edit = () => {
     transition(EDIT);
   };
-
 
   return (
     <article className="appointment">
@@ -85,12 +84,12 @@ export default function Appointment(props) {
       )}
       {mode === EDIT && (
         <Form
-        name={props.student}
-        interviewer={props.interviewer}
-        onCancel={back}
-        onSave={save}
-        interviewers={props.interviewers}
-           />
+          name={props.student}
+          interviewer={props.interviewer}
+          onCancel={back}
+          onSave={save}
+          interviewers={props.interviewers}
+        />
       )}
       {mode === ERROR_SAVE && (
         <Error message="You must have selected an interviewer" onClose={back} />
