@@ -11,7 +11,7 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
-  // find the day function takes in the day variable and returns the key value associated with that day of the week
+  // find the day function takes in the day variable and returns the index associated with that day of the week
 
   function findDay(day) {
     const daysOfWeek = {
