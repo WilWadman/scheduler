@@ -8,9 +8,8 @@ export default function useApplicationData() {
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
-
 
   // find the day function takes in the day variable and returns the key value associated with that day of the week
 
@@ -35,15 +34,14 @@ export default function useApplicationData() {
         ...prev,
         days: all[0].data,
         appointments: all[1].data,
-        interviewers:all[2].data,
+        interviewers: all[2].data,
       }));
     });
-  },[]);
+  }, []);
 
- 
-    // SetDay functionality
+  // SetDay functionality
   const setDay = (day) => setState({ ...state, day });
- // Book interview functionality
+  // Book interview functionality
   const bookInterview = function (id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -81,8 +79,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        // add the days value to our setstate to update
-        days
+        days,
       });
     });
   };
@@ -110,14 +107,12 @@ export default function useApplicationData() {
 
     let days = [...state.days];
     days[dayOfWeek] = day;
-console.log(state.days[dayOfWeek].spots)
-console.log(dayOfWeek)
+
     return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
         appointments,
-        // add the days value to our setstate to update
-        days
+        days,
       });
     });
   };

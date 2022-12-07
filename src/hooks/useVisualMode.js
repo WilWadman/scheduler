@@ -11,12 +11,12 @@ export default function useVisualMode(initial){
  
   function transition(newMode, replace = false) {
     if(replace){
-      //  use setHistory to slice off index 0 and the next index is there is one for a new array
+      
       setHistory(prev => prev.slice(0, -1));
-      // use state from last set and inject the newMode into a new array without altering the original
+     
       setHistory(prev => [...prev, newMode]);
       }else{
-        // use state from last set and inject the newMode into a new array without altering the original
+        
         setHistory(prev => [...prev, newMode]); 
       }
       setMode(newMode);
