@@ -27,9 +27,9 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8001/api/days"),
-      axios.get("http://localhost:8001/api/appointments"),
-      axios.get("http://localhost:8001/api/interviewers"),
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers"),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -38,7 +38,7 @@ export default function useApplicationData() {
         interviewers:all[2].data,
       }));
     });
-  });
+  },[]);
 
  
     // SetDay functionality
@@ -74,7 +74,7 @@ export default function useApplicationData() {
       };
     }
 
-    let days = state.days;
+    let days = [...state.days];
     days[dayOfWeek] = day;
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
@@ -108,9 +108,10 @@ export default function useApplicationData() {
       spots: state.days[dayOfWeek].spots + 1,
     };
 
-    let days = state.days;
+    let days = [...state.days];
     days[dayOfWeek] = day;
-
+console.log(state.days[dayOfWeek].spots)
+console.log(dayOfWeek)
     return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
