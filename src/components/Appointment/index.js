@@ -25,6 +25,9 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
+    if (!interviewer) {
+      transition(ERROR_SAVE, true);
+    } else {
     const interview = {
       student: name,
       interviewer,
@@ -35,7 +38,7 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
-
+  }
   function remove() {
     if (mode === SHOW) {
       transition(CONFIRM);
@@ -70,6 +73,7 @@ export default function Appointment(props) {
           interviewer={props.interviewer}
           interviewers={props.interviewers}
           onCancel={() => back(EMPTY)}
+          bookInterview={props.bookInterview} 
           onSave={save}
         />
       )}
@@ -99,4 +103,4 @@ export default function Appointment(props) {
       )}
     </article>
   );
-}
+};
