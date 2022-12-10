@@ -24,6 +24,8 @@ export default function useApplicationData() {
     return daysOfWeek[day];
   }
 
+  // Setting a new state with data pulled from the api rather than mutating the initial state
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -39,9 +41,10 @@ export default function useApplicationData() {
     });
   }, []);
 
-  // SetDay functionality
+  // SetDay functionality takes in a copy of the state with the day added
   const setDay = (day) => setState({ ...state, day });
-  // Book interview functionality
+  /* Book interview functionality  takes in the id and interview then creates a new copy of state, 
+  updates it and merges it into the current state to update the booked interview */
   const bookInterview = function (id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -65,7 +68,7 @@ export default function useApplicationData() {
         spots: state.days[dayOfWeek].spots - 1,
       };
     } else {
-      //
+  
       day = {
         ...state.days[dayOfWeek],
         spots: state.days[dayOfWeek].spots,
@@ -74,7 +77,7 @@ export default function useApplicationData() {
 
     let days = [...state.days];
     days[dayOfWeek] = day;
-
+// Put request sent to the api and then a new state is set with a copy of state being mergedvas the current state
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       setState({
         ...state,
@@ -84,7 +87,8 @@ export default function useApplicationData() {
     });
   };
 
-  // Cancel interview functionality
+  /* Cancel interview functionality  takes in the id of the interview then creates a new copy of state, 
+  updates it and merges it into the current state to update the canceled interview */
 
   const cancelInterview = function (id) {
     const appointment = {
@@ -107,7 +111,7 @@ export default function useApplicationData() {
 
     let days = [...state.days];
     days[dayOfWeek] = day;
-
+// Delete request sent to the api and then a new state is set with a copy of state being mergedvas the current state
     return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
