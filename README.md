@@ -5,6 +5,7 @@ This app built with React allows you to create, delete, and update appointments 
 ## Setup
 
 Install dependencies with `npm install`.
+Install and setup the scheduler-api: https://github.com/WilWadman/scheduler-api
 
 ## Running Webpack Development Server
 
@@ -33,6 +34,7 @@ npm run storybook
    - "react": "^16.9.0",
    - "react-dom": "^16.9.0",
    - "react-scripts": "3.4.4"
+
 
 
 ## ScreenShots
