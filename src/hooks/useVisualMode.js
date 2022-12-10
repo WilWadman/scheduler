@@ -34,7 +34,7 @@ export default function useVisualMode(initial){
     // looks to see if the current history has at least 2 items in it
     if(history.length > 1) {
       // sets the mode to the second last history in the item
-      setMode((prev) => history[history.length-2]);
+      setMode((prev) => nextHistory[history.length-2]);
 
     }
   }
