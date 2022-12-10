@@ -46,6 +46,7 @@ export default function useApplicationData() {
   /* Book interview functionality  takes in the id and interview then creates a new copy of state, 
   updates it and merges it into the current state to update the booked interview */
   const bookInterview = function (id, interview) {
+    console.log( "ID", id , "INTERVIEW", interview)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -78,7 +79,7 @@ export default function useApplicationData() {
     let days = [...state.days];
     days[dayOfWeek] = day;
 // Put request sent to the api and then a new state is set with a copy of state being mergedvas the current state
-    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+    return axios.put(`/api/appointments/${id}`, { interview}).then(() => {
       setState({
         ...state,
         appointments,

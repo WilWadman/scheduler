@@ -29,9 +29,10 @@ export default function Appointment(props) {
       transition(ERROR_SAVE, true);
       
     } else {
+      console.log("NAME",name, "Props.id", props.id ,"INTERVIEWER", interviewer)
     const interview = {
       student: name,
-      interviewer,
+      interviewer: interviewer.id,
     };
     transition(SAVING, true);
     props
@@ -57,7 +58,7 @@ export default function Appointment(props) {
     transition(EDIT);
   };
 
- 
+ console.log(mode)
 
   return (
     <article className="appointment" data-testid="appointment">
@@ -73,11 +74,12 @@ export default function Appointment(props) {
       )}
       {mode === CREATE && (
         <Form
-          interviewer={props.interviewer}
+        interviewer={props.interview}
           interviewers={props.interviewers}
           onCancel={() => back(EMPTY)}
           bookInterview={props.bookInterview} 
           onSave={save}
+         
         />
       )}
       {mode === SAVING && <Status message={SAVING} />}
@@ -89,17 +91,29 @@ export default function Appointment(props) {
           onCancel={back}
         />
       )}
-      {mode === EDIT && (
+
+{mode === EDIT && (
+        <Form
+        student={props.interview.student}
+        interviewer={props.interview.interviewer}
+          interviewers={props.interviewers}
+          onCancel={() => back(EMPTY)}
+          bookInterview={props.bookInterview} 
+          onSave={save}
+         
+        />
+      )}
+      {/* {mode === EDIT && (
         <Form
           student={props.interview.student}
-       
+         
           onCancel={back}
           onSave={save}
           interviewers={props.interviewers}
         />
-      )}
+      )} */}
       {mode === ERROR_SAVE && (
-        <Error message="You must have selected an interviewer" onClose={() => back(EDIT)} />
+        <Error message="You must have selected an interviewer" onClose={back} />
       )}
       {mode === ERROR_DELETE && (
         <Error message="Could not delete appointment" onClose={back} />

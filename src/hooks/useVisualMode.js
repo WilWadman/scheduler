@@ -11,7 +11,7 @@ export default function useVisualMode(initial){
 
  
   function transition(newMode, replace = false) {
-    
+ 
     // if there is an error  this adds the new mode in the correct position
     if(replace){
       
@@ -23,7 +23,7 @@ export default function useVisualMode(initial){
         
       }
       setMode(newMode);
-      return newMode
+      
   }
 
  // function to revert to a previous history 
