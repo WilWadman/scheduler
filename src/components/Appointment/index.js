@@ -29,7 +29,7 @@ export default function Appointment(props) {
       transition(ERROR_SAVE, true);
       
     } else {
-      console.log("NAME",name, "Props.id", props.id ,"INTERVIEWER", interviewer)
+      
     const interview = {
       student: name,
       interviewer: interviewer.id,
@@ -58,7 +58,7 @@ export default function Appointment(props) {
     transition(EDIT);
   };
 
- console.log(mode)
+
 
   return (
     <article className="appointment" data-testid="appointment">

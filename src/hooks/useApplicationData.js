@@ -46,7 +46,7 @@ export default function useApplicationData() {
   /* Book interview functionality  takes in the id and interview then creates a new copy of state, 
   updates it and merges it into the current state to update the booked interview */
   const bookInterview = function (id, interview) {
-    console.log( "ID", id , "INTERVIEW", interview)
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
