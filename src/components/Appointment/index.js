@@ -25,11 +25,7 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-    if (!interviewer) {
-      transition(ERROR_SAVE, true);
-      
-    } else {
-      
+ 
     const interview = {
       student: name,
       interviewer: interviewer.id,
@@ -40,7 +36,7 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
-  }
+  
   function remove() {
     if (mode === SHOW) {
       transition(CONFIRM);
@@ -103,15 +99,7 @@ export default function Appointment(props) {
          
         />
       )}
-      {/* {mode === EDIT && (
-        <Form
-          student={props.interview.student}
-         
-          onCancel={back}
-          onSave={save}
-          interviewers={props.interviewers}
-        />
-      )} */}
+  
       {mode === ERROR_SAVE && (
         <Error message="You must have selected an interviewer" onClose={back} />
       )}
